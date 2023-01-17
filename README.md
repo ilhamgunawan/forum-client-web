@@ -1,3 +1,46 @@
+# Pages
+
+This is the list of endpoints, queries, and parameters that are used on each page.
+
+## Auth - Sign In
+
+- Route: `/auth/signin?redirect=`
+- Queries
+    - redirect (optional)
+- Endpoints
+    - POST `https://dummyjson.com/auth/login`
+        - Body (JSON)
+            - username (string, required)
+            - password (string, required)
+
+## Forum List
+
+- Route: `/forums?page=&search=`
+- Queries
+    - page (optional, default = 1)
+    - search (optional)
+- Endpoints
+    - GET `https://dummyjson.com/auth/posts?limit=&skip=`
+    - GET `https://dummyjson.com/auth/posts/search?q=love?limit=&skip=`
+
+## Forum Detail
+
+- Route: `/forums/:id`
+- Params
+    - id (required)
+- Endpoints
+    - GET `https://dummyjson.com/auth/posts/:id`
+    - GET `https://dummyjson.com/auth/posts/:id/comments`
+
+## User Profile
+
+- Route: `/users/:id`
+- Params
+    - id (required)
+- Endpoints
+    - GET `https://dummyjson.com/auth/users/:id`
+    - GET `https://dummyjson.com/auth/users/:id/posts`
+
 # vue-forum
 
 This template should help get you started developing with Vue 3 in Vite.
