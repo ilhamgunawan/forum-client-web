@@ -12,6 +12,15 @@ const router = new VueRouter({
       name: 'auth/signin',
       component: () => import('../views/AuthSignInView.vue'),
     },
+    {
+      path: '/forums',
+      name: 'forums',
+      component: () => import('../views/ForumsView.vue'),
+    },
+    {
+      path: '*',
+      component: () => import('../views/NotFoundView.vue'),
+    },
   ],
 });
 
