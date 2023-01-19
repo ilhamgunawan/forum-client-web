@@ -1,5 +1,8 @@
 <script lang="ts">
-import { signIn } from '../lib/auth';
+import { mapActions, mapState } from 'pinia';
+import { useAuthStore } from '@/stores/auth';
+import { signIn } from '@/lib/auth';
+import { makeErrorFromAxiosResponse, DEFAULT_ERR_MESSAGE } from '@/lib/error';
 
 export default {
   name: 'SignInView',
@@ -11,7 +14,14 @@ export default {
       isLoading: false,
     };
   },
+  computed: {
+    ...mapState(useAuthStore, ['auth']),
+  },
+  mounted() {
+    if (this.auth !== null) this.$router.replace('/forums');
+  },
   methods: {
+    ...mapActions(useAuthStore, ['setAuth']),
     handleFormSubmit() {
       if (this.isLoading) { return; }
 
@@ -23,22 +33,25 @@ export default {
         password: this.password,
       })
         .then((res) => {
-          console.log('Success: ', res);
+          // console.log('Success: ', res);
 
-          this.$router.replace('/forums');
+          if (!res.data || !res.data.token) {
+            this.errorMessage = DEFAULT_ERR_MESSAGE;
+          }
+
+          if (res.data && res.data.token) {
+            this.setAuth(res.data);
+            this.errorMessage = '';
+            this.$router.replace('/forums');
+          }
+
           this.isLoading = false;
         })
         .catch((err) => {
-          console.log('Error: ', err);
+          // console.log('Error: ', err);
 
-          if (err.response?.data?.message) {
-            this.errorMessage = err.response?.data?.message;
-          } else if (err.code === 'ERR_NETWORK') {
-            this.errorMessage = 'Network error, please check your internet connection.';
-          } else {
-            this.errorMessage = 'Something went wrong, please try again.';
-          }
-
+          const error = makeErrorFromAxiosResponse(err);
+          this.errorMessage = error.message;
           this.isLoading = false;
         });
     },
