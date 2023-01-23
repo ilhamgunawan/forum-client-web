@@ -6,6 +6,9 @@ import { makeErrorFromAxiosResponse, DEFAULT_ERR_MESSAGE } from '@/lib/error';
 
 export default {
   name: 'SignInView',
+  metaInfo: {
+    title: 'Sign In - Forum',
+  },
   data() {
     return {
       userName: '',
@@ -18,7 +21,7 @@ export default {
     ...mapState(useAuthStore, ['auth']),
   },
   mounted() {
-    if (this.auth !== null) this.$router.replace('/forums');
+    if (this.auth) this.$router.replace('/forums');
   },
   methods: {
     ...mapActions(useAuthStore, ['setAuth']),
