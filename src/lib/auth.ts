@@ -35,7 +35,7 @@ export async function signIn(data: SignIn): Promise<SignInResponse> {
 
 export function getDefaultAuthState() {
   const encryptedAuth = localStorage.getItem('a');
-  if (!encryptedAuth) return null;
+  if (!encryptedAuth) return undefined;
   const decryptedAuth = AES.decrypt(encryptedAuth, 'rahasia').toString(enc.Utf8);
   return JSON.parse(decryptedAuth) as Auth;
 }
@@ -43,4 +43,8 @@ export function getDefaultAuthState() {
 export function setDefaultAuthState(auth: Auth) {
   const encrypted = AES.encrypt(JSON.stringify(auth), 'rahasia');
   localStorage.setItem('a', encrypted.toString());
+}
+
+export function clearDefaultAuth() {
+  localStorage.removeItem('a');
 }

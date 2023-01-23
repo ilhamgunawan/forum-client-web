@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { defineStore } from 'pinia';
-import { getDefaultAuthState, setDefaultAuthState } from '@/lib/auth';
+import { getDefaultAuthState, setDefaultAuthState, clearDefaultAuth } from '@/lib/auth';
 import type { Auth } from '@/lib/auth';
 
 export const useAuthStore = defineStore({
@@ -16,6 +16,10 @@ export const useAuthStore = defineStore({
     setAuth(auth: Auth) {
       this.auth = auth;
       setDefaultAuthState(auth);
+    },
+    clearAuth() {
+      this.auth = undefined;
+      clearDefaultAuth();
     },
   },
 });
