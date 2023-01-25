@@ -5,6 +5,7 @@ import type { ErrorResponse } from '@/lib/error';
 import type { Pagination } from '@/lib/pagination';
 import ForumList from '@/components/forum/ForumList.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue';
+import LayoutComponent from '@/components/LayoutComponent.vue';
 import { mapState, mapActions } from 'pinia';
 import { useAuthStore } from '@/stores/auth';
 import { getForums } from '@/lib/forum';
@@ -33,7 +34,7 @@ export default {
   computed: {
     ...mapState(useAuthStore, ['auth']),
   },
-  components: { ForumList, PaginationComponent },
+  components: { ForumList, PaginationComponent, LayoutComponent },
   methods: {
     ...mapActions(useAuthStore, ['clearAuth']),
     fetchForums(page: number) {
@@ -83,17 +84,19 @@ export default {
 </script>
 
 <template>
-  <main class="max-w-2xl m-auto">
-    <p v-if="isLoading" class="text-center">Now loading...</p>
-    <ForumList
-      v-if="forumsResponse"
-      v-bind:forums="forumsResponse.posts"
-    />
-    <div class="flex justify-center mt-4 mb-8">
-      <PaginationComponent
-        v-if="pagination"
-        v-bind:pagination="pagination"
+  <LayoutComponent title="Timeline">
+    <main class="max-w-2xl m-auto">
+      <p v-if="isLoading" class="text-center">Now loading...</p>
+      <ForumList
+        v-if="forumsResponse"
+        v-bind:forums="forumsResponse.posts"
       />
-    </div>
-  </main>
+      <div class="flex justify-center mt-4 mb-8">
+        <PaginationComponent
+          v-if="pagination"
+          v-bind:pagination="pagination"
+        />
+      </div>
+    </main>
+  </LayoutComponent>
 </template>
