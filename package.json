@@ -4,6 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
+    "docker:build:local": "docker build -t forum-client-web:latest .",
+    "docker:serve": "docker run -d -p 8080:80 forum-client-web:latest",
     "preview": "vite preview --port 4173",
     "test:unit": "vitest --environment jsdom",
     "test:e2e": "start-server-and-test preview http://localhost:4173/ 'cypress open --e2e'",
