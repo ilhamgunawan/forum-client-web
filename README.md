@@ -1,5 +1,12 @@
 # Table of contents
 - [Up And Running](#Up-And-Running)
+    * [Project Setup](##Project-Setup)
+    * [Using Docker](##Using-Docker)
+- Pages
+    * [Auth - Sign In](##Auth%20-%20Sign%20In)
+    * [Forum Index](##Forum-Index)
+    * [Forum Detail](##Forum-Detail)
+    * [User Profile](##User-Profile)
 
 # Up And Running
 
@@ -40,7 +47,7 @@ npm run test:e2e # or `npm run test:e2e:ci` for headless testing
 npm run lint
 ```
 
-# Using Docker
+## Using Docker
 
 Build docker image:
 ```sh
@@ -67,7 +74,7 @@ This is the list of endpoints, queries, and parameters that are used on each pag
             - username (string, required)
             - password (string, required)
 
-## Forum List
+## Forum Index
 
 - Route: `/forums?page=&search=`
 - Queries
