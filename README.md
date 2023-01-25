@@ -3,7 +3,7 @@
     * [Project Setup](#Project-Setup)
     * [Using Docker](#Using-Docker)
 - [Pages](#Pages)
-    * [Auth - Sign In](#Auth%20-%20Sign%20In)
+    * [Auth - Sign In](#auth---sign-in)
     * [Forum Index](#Forum-Index)
     * [Forum Detail](#Forum-Detail)
     * [User Profile](#User-Profile)
