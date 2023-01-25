@@ -2,14 +2,18 @@
 import type { AxiosError } from 'axios';
 import type { ForumResponse } from '@/lib/forum';
 import type { ErrorResponse } from '@/lib/error';
+import type { Pagination } from '@/lib/pagination';
 import ForumList from '@/components/forum/ForumList.vue';
 import { mapState, mapActions } from 'pinia';
 import { useAuthStore } from '@/stores/auth';
 import { getForums } from '@/lib/forum';
 import { makeErrorFromAxiosResponse } from '@/lib/error';
+import { getPagination } from '@/lib/pagination';
 
 interface Data {
   forumsResponse: ForumResponse | undefined
+  pagination: Pagination | undefined
+  page: number
   isLoading: boolean
 }
 
@@ -17,6 +21,8 @@ export default {
   data(): Data {
     return {
       forumsResponse: undefined,
+      pagination: undefined,
+      page: parseInt(this.$route.query.page as string ?? '1', 10),
       isLoading: true,
     };
   },
@@ -32,10 +38,16 @@ export default {
   },
   mounted() {
     if (this.auth) {
-      getForums({ page: 1, token: this.auth.token })
+      getForums({ page: this.page, token: this.auth.token })
         .then((res) => {
           // console.log('Success: ', res);
           this.forumsResponse = res.data;
+          this.pagination = getPagination({
+            countCurrentPage: res.data.posts.length,
+            countTotal: res.data.total,
+            currentPage: this.page,
+            limit: res.data.limit,
+          });
           this.isLoading = false;
         })
         .catch((reason: AxiosError<ErrorResponse>) => {
