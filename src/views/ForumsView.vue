@@ -60,7 +60,7 @@ export default {
 </script>
 
 <template>
-  <main>
+  <main class="max-w-2xl m-auto">
     <p v-if="isLoading" class="text-center">Now loading...</p>
     <ForumList
       v-if="forumsResponse"
