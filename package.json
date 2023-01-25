@@ -68,7 +68,8 @@
     "postcss.config.js"
   ],
   "lint-staged": {
-    "*.ts": "prettier --fix",
-    "*.js": "prettier --fix"
+    "*.ts": "eslint --fix",
+    "*.js": "eslint --fix",
+    "*.vue": "eslint --fix"
   }
 }
