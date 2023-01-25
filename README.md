@@ -1,12 +1,12 @@
 # Table of contents
 - [Up And Running](#Up-And-Running)
-    * [Project Setup](##Project-Setup)
-    * [Using Docker](##Using-Docker)
-- Pages
-    * [Auth - Sign In](##Auth%20-%20Sign%20In)
-    * [Forum Index](##Forum-Index)
-    * [Forum Detail](##Forum-Detail)
-    * [User Profile](##User-Profile)
+    * [Project Setup](#Project-Setup)
+    * [Using Docker](#Using-Docker)
+- [Pages](#Pages)
+    * [Auth - Sign In](#Auth%20-%20Sign%20In)
+    * [Forum Index](#Forum-Index)
+    * [Forum Detail](#Forum-Detail)
+    * [User Profile](#User-Profile)
 
 # Up And Running
 
